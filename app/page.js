@@ -2,6 +2,7 @@
 
 import React, {useState, useEffect } from 'react';
 import Image from 'next/image';
+import { collection, addDoc } from 'firebase/firestore';
 
 
 export default function Home() {
@@ -12,7 +13,16 @@ export default function Home() {
     {name: 'candy', price: 7.95},
   ]);
 
+  const [newItem, setNewItem] = useState({name: '', price: ''});
   const [total, setTotal] = useState(0);
+
+  // TODO: Add item to database
+
+  const addItem = async (e)
+
+  // TODO: Read items from database
+
+  // TODO: Delete items from database
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between sm:p-24 p-4">
@@ -22,10 +32,12 @@ export default function Home() {
         <div className='bg-slate-800 p-4 rounded-lg'>
           <form className='grid grid-cols-6 items-center text-black'>
             <input
+              value={newItem.name}
               className='col-span-3 p-3 border' type='text' 
               placeholder='Enter item'
             />
             <input
+              value={newItem.price}
               className='col-span-2 p-3 border mx-3' 
               type='text' placeholder='Enter $'
              />
