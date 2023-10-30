@@ -1,6 +1,7 @@
 'use client'
 
 import React, {useState, useEffect } from 'react';
+import Image from 'next/image';
 
 
 export default function Home() {
@@ -38,12 +39,15 @@ export default function Home() {
 
           <ul>
             {items.map((item, id) => (
-              <li index={id}>
-                <div>
+              <li key={id} className='my-4 w-full flex justify-between' >
+                <div className='p-4 w-full flex justify-between'>
                   <span>{item.name}</span>
                   <span>${item.price}</span>
                 </div>
-                <button></button>
+                <button>
+                  <Image alt='X' width={24} height={24}
+                  src={'/delete.svg'}/>
+                </button>
               </li>
             ))}
           </ul>
