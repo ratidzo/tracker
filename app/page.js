@@ -35,6 +35,18 @@ export default function Home() {
               +
              </button>
           </form>
+
+          <ul>
+            {items.map((item, id) => (
+              <li index={id}>
+                <div>
+                  <span>{item.name}</span>
+                  <span>${item.price}</span>
+                </div>
+                <button></button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </main>
