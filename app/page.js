@@ -44,7 +44,9 @@ export default function Home() {
                   <span className='capitalize'>{item.name}</span>
                   <span>${item.price}</span>
                 </div>
-                <button>
+                <button
+                  className='hover:bg-slate-900
+                  border-l-2 border-slate-900 p-4 ml-8'>
                   <Image alt='X' width={24} height={24}
                   src={'/delete.svg'}/>
                 </button>
