@@ -39,7 +39,9 @@ export default function Home() {
 
           <ul>
             {items.map((item, id) => (
-              <li key={id} className='my-4 w-full flex justify-between' >
+              <li key={id} 
+                className='my-4 w-full flex justify-between bg-slate-950' 
+                >
                 <div className='p-4 w-full flex justify-between'>
                   <span className='capitalize'>{item.name}</span>
                   <span>${item.price}</span>
