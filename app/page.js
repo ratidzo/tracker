@@ -8,8 +8,9 @@ export default function Home() {
 
         <div className='bg-slate-800 p-4 rounded-lg'>
           <form className='grid grid-cols-6 items-center text-black'>
-            <input type='text' placeholder='Enter item'/>
-            <input type='text' placeholder='Enter $'/>
+            <input className='col-span-3 p-3 border' type='text' 
+            placeholder='Enter item'/>
+            <input className='col-span-2 p-3 border mx-3' type='text' placeholder='Enter $'/>
             <button type='submit'>+</button>
           </form>
         </div>
