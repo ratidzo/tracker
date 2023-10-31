@@ -17,6 +17,12 @@ export default function Home() {
   const [total, setTotal] = useState(0);
 
   // TODO: Add item to database
+  const addItem = async (e) => {
+    e.preventDefault();
+    if (newItem.name !== '' && newItem.price !== '') {
+       setItems([...items, newItem]);
+    }
+  }
 
   // TODO: Read items from database
 
@@ -31,18 +37,19 @@ export default function Home() {
           <form className='grid grid-cols-6 items-center text-black'>
             <input
               value={newItem.name}
-              onChange={(e) => setNewItem({ ...newItem, name: e.target.value})}
+              onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
               className='col-span-3 p-3 border' type='text' 
               placeholder='Enter item'
             />
             <input
               value={newItem.price}
-              onChange={(e) => setNewItem({ ...newItem, price: e.target.value})}
-              className='col-span-2 p-3 border mx-3' 
-              type='text' placeholder='Enter $'
+              onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+              className='col-span-2 p-3 border mx-3'
+              type='number' 
+              placeholder='Enter $'
              />
             <button
-             
+             onClick={addItem}
              className='text-white bg-slate-950 hover:bg-slate-900 p-3 text-xl'
              type='submit'
              >
