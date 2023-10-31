@@ -121,7 +121,7 @@ export default function Home() {
              </button>
           </form>
 
-          <ul>
+          <ul className='h-[40vh] overflow-y-auto'>
             {items.map((item, id) => (
               <li  key={id} 
                 className={`my-4 w-full flex justify-between text-lg
@@ -144,7 +144,7 @@ export default function Home() {
           </ul>
           {items.length < 1 ? (''): ( 
             <div className={` ${nunito_sans_bold.className}
-             text-lg flex justify-between p-3`}>
+             text-lg flex justify-between p-3 mt-4`}>
               <span>Total</span>
               <span>$ {toDisplayCurrencyUnits(total).toFixed(2)}</span>
             </div>
