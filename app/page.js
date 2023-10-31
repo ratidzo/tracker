@@ -8,7 +8,7 @@ import { db } from './firebase';
 import { toDisplayCurrencyUnits,
         toStorageCurrencyUnits } from './lib/converter';
 
-import { Nunito_Sans} from 'next/font/google';
+import { Nunito_Sans, Inria_Sans } from 'next/font/google';
 
 const nunito_sans = Nunito_Sans({
   weight: '400',
@@ -20,7 +20,10 @@ const nunito_sans_bold = Nunito_Sans({
   subsets: ['latin']
 })
 
-
+const inria_sans = Inria_Sans({
+  weight: '400',
+  subsets: ['latin']
+})
 
 
 export default function Home() {
@@ -85,7 +88,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between sm:p-24 p-4">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <h1 className={`text-4xl p-4 text-center mb-8 ${nunito_sans_bold.className}`}>
+        <h1 className={`text-4xl p-4 text-center mb-8 ${nunito_sans.className}`}>
           Expense Tracker
           </h1>
 
@@ -147,7 +150,17 @@ export default function Home() {
             </div>
           )}
         </div>
+
+        {items.length < 1 ? (
+        <div className='w-full text-center mt-16'>
+          <h1 className={`text-slate-300 dark:text-slate-800
+          text-4xl
+          ${nunito_sans.className}`}>Your items show up here. </h1>
+        </div>
+      ): ''}
       </div>
+
+      
     </main>
   )
 }
