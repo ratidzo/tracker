@@ -3,9 +3,15 @@
  */
 
 export const toDisplayCurrencyUnits = (centsAmount) => {
-    return centsAmount / 100; 
+    if(centsAmount) {
+        return (centsAmount / 100);
+    }
+    return '';
 }
 
 export const toStorageCurrencyUnits = (dollarAmount) => {
-    return dollarAmount * 100;
+    if(dollarAmount) {
+        return dollarAmount * 100;
+    }
+    return '';
 }

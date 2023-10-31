@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { collection, addDoc, getDoc, query,
    onSnapshot, querySnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from './firebase';
+import { toDisplayCurrencyUnits,
+        toStorageCurrencyUnits } from './lib/converter';
 
 
 export default function Home() {
@@ -51,7 +53,7 @@ export default function Home() {
       // Read total from itemsArr
       const calculateTotal = () => {
         const totalPrice = itemsArr.reduce(
-          (sum, item) => sum + parseFloat(item.price), 
+          (sum, item) => sum + parseInt(item.price), 
           0
         );
         setTotal(totalPrice);
@@ -80,8 +82,9 @@ export default function Home() {
               placeholder='Enter item'
             />
             <input
-              value={newItem.price}
-              onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+              value={toDisplayCurrencyUnits(newItem.price)}
+              onChange={(e) => setNewItem({
+                 ...newItem, price:  toStorageCurrencyUnits(e.target.value)})}
               className='col-span-2 p-3 border mx-3'
               type='number' 
               placeholder='Enter $'
@@ -102,7 +105,7 @@ export default function Home() {
                 >
                 <div className='p-4 w-full flex justify-between'>
                   <span className='capitalize'>{item.name}</span>
-                  <span>${item.price}</span>
+                  <span>${toDisplayCurrencyUnits(item.price).toFixed(2)}</span>
                 </div>
                 <button onClick={() => deleteItem(item.id)}
                   className='hover:bg-slate-900
@@ -116,7 +119,7 @@ export default function Home() {
           {items.length < 1 ? (''): ( 
             <div className='flex justify-between p-3'>
               <span>Total</span>
-              <span>${total}</span>
+              <span>${toDisplayCurrencyUnits(total).toFixed(2)}</span>
             </div>
           )}
         </div>
