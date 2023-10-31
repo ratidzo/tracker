@@ -15,6 +15,11 @@ const nunito_sans = Nunito_Sans({
   subsets: ['latin']
 })
 
+const nunito_sans_bold = Nunito_Sans({
+  weight: '700',
+  subsets: ['latin']
+})
+
 
 export default function Home() {
 
@@ -133,7 +138,7 @@ export default function Home() {
             ))}
           </ul>
           {items.length < 1 ? (''): ( 
-            <div className={` ${nunito_sans.className}
+            <div className={` ${nunito_sans_bold.className}
              text-lg flex justify-between p-3`}>
               <span>Total</span>
               <span>$ {toDisplayCurrencyUnits(total).toFixed(2)}</span>
