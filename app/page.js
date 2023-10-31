@@ -121,7 +121,7 @@ export default function Home() {
              </button>
           </form>
 
-          <ul className='h-[40vh] overflow-y-auto px-4'>
+          <ul className=' max-h-[40vh] overflow-y-auto px-4'>
             {items.map((item, id) => (
               <li  key={id} 
                 className={`my-4 w-full flex justify-between text-lg
