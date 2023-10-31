@@ -3,7 +3,7 @@
 import React, {useState, useEffect } from 'react';
 import Image from 'next/image';
 import { collection, addDoc, getDoc, query,
-   onSnapshot, querySnapshot } from 'firebase/firestore';
+   onSnapshot, querySnapshot, deleteDoc, doc } from 'firebase/firestore';
 import { db } from './firebase';
 
 
@@ -61,7 +61,10 @@ export default function Home() {
     })
   }, [])
 
-  // TODO: Delete items from database
+  // Delete items from database
+  const deleteItem = async (id) => {
+    deleteDoc(doc(db, 'items', id));
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between sm:p-24 p-4">
@@ -101,7 +104,7 @@ export default function Home() {
                   <span className='capitalize'>{item.name}</span>
                   <span>${item.price}</span>
                 </div>
-                <button
+                <button onClick={() => deleteItem(item.id)}
                   className='hover:bg-slate-900
                   border-l-2 border-slate-900 p-4 ml-8'>
                   <Image alt='X' width={24} height={24}
