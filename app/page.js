@@ -87,14 +87,14 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between sm:p-24 p-4">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
+      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm ">
         <h1 className={`text-4xl p-4 text-center mb-8 ${nunito_sans.className}`}>
           Expense Tracker
           </h1>
 
-        <div className='bg-slate-200 shadow
+        <div className='bg-slate-200 shadow 
          dark:shadow-none dark:bg-slate-800 p-4 rounded-lg'>
-          <form className='grid grid-cols-6 items-center text-black'>
+          <form className='grid grid-cols-6 mb-4 items-center text-black px-4'>
             <input
               value={newItem.name}
               onChange={(e) => setNewItem({ ...newItem, name: e.target.value })}
@@ -121,7 +121,7 @@ export default function Home() {
              </button>
           </form>
 
-          <ul className='h-[40vh] overflow-y-auto'>
+          <ul className='h-[40vh] overflow-y-auto px-4'>
             {items.map((item, id) => (
               <li  key={id} 
                 className={`my-4 w-full flex justify-between text-lg
