@@ -73,7 +73,8 @@ export default function Home() {
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
         <h1 className='text-4xl p-4 text-center'>Expense Tracker</h1>
 
-        <div className='bg-slate-800 p-4 rounded-lg'>
+        <div className='bg-slate-200 shadow
+         dark:shadow-none dark:bg-slate-800 p-4 rounded-lg'>
           <form className='grid grid-cols-6 items-center text-black'>
             <input
               value={newItem.name}
@@ -91,7 +92,10 @@ export default function Home() {
              />
             <button
              onClick={addItem}
-             className='text-white bg-slate-950 hover:bg-slate-900 p-3 text-xl'
+             className='text-white
+             bg-slate-700 hover:bg-slate-600 
+              dark:bg-slate-950
+              dark:hover:bg-slate-900 p-3 text-xl'
              type='submit'
              >
               +
@@ -101,15 +105,18 @@ export default function Home() {
           <ul>
             {items.map((item, id) => (
               <li key={id} 
-                className='my-4 w-full flex justify-between bg-slate-950' 
+                className='my-4 w-full flex justify-between
+                    border-b-2 border-slate-300/50 dark:border-none
+                    dark:text-white dark:bg-slate-950' 
                 >
                 <div className='p-4 w-full flex justify-between'>
                   <span className='capitalize'>{item.name}</span>
                   <span>${toDisplayCurrencyUnits(item.price).toFixed(2)}</span>
                 </div>
                 <button onClick={() => deleteItem(item.id)}
-                  className='hover:bg-slate-900
-                  border-l-2 border-slate-900 p-4 ml-8'>
+                  className='dark:hover:bg-slate-900 dark:bg-slate-950
+                  bg-slate-700 hover:bg-slate-600
+                  border-l-2 dark:border-slate-900 p-4 ml-8'>
                   <Image alt='X' width={24} height={24}
                   src={'/delete.svg'}/>
                 </button>
