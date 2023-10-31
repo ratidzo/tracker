@@ -8,6 +8,13 @@ import { db } from './firebase';
 import { toDisplayCurrencyUnits,
         toStorageCurrencyUnits } from './lib/converter';
 
+import { Nunito_Sans, Inria_Sans } from 'next/font/google';
+
+const nunito_sans = Nunito_Sans({
+  weight: '400',
+  subsets: ['latin']
+})
+
 
 export default function Home() {
 
@@ -71,7 +78,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between sm:p-24 p-4">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <h1 className='text-4xl p-4 text-center'>Expense Tracker</h1>
+        <h1 className='text-4xl p-4 text-center'>
+          Expense Tracker
+          </h1>
 
         <div className='bg-slate-200 shadow
          dark:shadow-none dark:bg-slate-800 p-4 rounded-lg'>
@@ -104,14 +113,14 @@ export default function Home() {
 
           <ul>
             {items.map((item, id) => (
-              <li key={id} 
-                className='my-4 w-full flex justify-between
+              <li  key={id} 
+                className={`my-4 w-full flex justify-between text-lg
                     border-b-2 border-slate-300/50 dark:border-none
-                    dark:text-white dark:bg-slate-950' 
+                    dark:text-white dark:bg-slate-950 ${nunito_sans.className}`} 
                 >
                 <div className='p-4 w-full flex justify-between'>
                   <span className='capitalize'>{item.name}</span>
-                  <span>${toDisplayCurrencyUnits(item.price).toFixed(2)}</span>
+                  <span>$ {toDisplayCurrencyUnits(item.price).toFixed(2)}</span>
                 </div>
                 <button onClick={() => deleteItem(item.id)}
                   className='dark:hover:bg-slate-900 dark:bg-slate-950
@@ -124,9 +133,10 @@ export default function Home() {
             ))}
           </ul>
           {items.length < 1 ? (''): ( 
-            <div className='flex justify-between p-3'>
+            <div className={` ${nunito_sans.className}
+             text-lg flex justify-between p-3`}>
               <span>Total</span>
-              <span>${toDisplayCurrencyUnits(total).toFixed(2)}</span>
+              <span>$ {toDisplayCurrencyUnits(total).toFixed(2)}</span>
             </div>
           )}
         </div>
