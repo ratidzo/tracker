@@ -28,6 +28,7 @@ export default function Home() {
           name: newItem.name.trim(),
           price: newItem.price,
         });
+        setNewItem({ name: '', price: '' })
         console.log('Document written with ID: ', docRef.id);
       } catch (e) {
         console.error('Error adding document: ', e);
