@@ -3,6 +3,7 @@
 import React, {useState, useEffect } from 'react';
 import Image from 'next/image';
 import { collection, addDoc } from 'firebase/firestore';
+import { db } from './firebase';
 
 
 export default function Home() {
@@ -20,7 +21,17 @@ export default function Home() {
   const addItem = async (e) => {
     e.preventDefault();
     if (newItem.name !== '' && newItem.price !== '') {
-       setItems([...items, newItem]);
+      //  setItems([...items, newItem]);
+      try {
+
+        const docRef = await addDoc(collection(db, 'items'), {
+          name: newItem.name.trim(),
+          price: newItem.price,
+        });
+        console.log('Document written with ID: ', docRef.id);
+      } catch (e) {
+        console.error('Error adding document: ', e);
+      }
     }
   }
 
