@@ -2,22 +2,23 @@
 
 import React, {useState, useEffect } from 'react';
 import Image from 'next/image';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDoc, query,
+   onSnapshot, querySnapshot } from 'firebase/firestore';
 import { db } from './firebase';
 
 
 export default function Home() {
 
   const [items, setItems] = useState([
-    {name: 'Coffee', price: 4.95},
-    {name: 'Movie', price: 24.95},
-    {name: 'candy', price: 7.95},
+    // {name: 'Coffee', price: 4.95},
+    // {name: 'Movie', price: 24.95},
+    // {name: 'candy', price: 7.95},
   ]);
 
   const [newItem, setNewItem] = useState({name: '', price: ''});
   const [total, setTotal] = useState(0);
 
-  // TODO: Add item to database
+  // Add item to database
   const addItem = async (e) => {
     e.preventDefault();
     if (newItem.name !== '' && newItem.price !== '') {
@@ -36,7 +37,18 @@ export default function Home() {
     }
   }
 
-  // TODO: Read items from database
+  // Read items from database
+  useEffect(() => {
+    const q = query(collection(db, 'items'))
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      let itemsArr = []
+
+      querySnapshot.forEach((doc) => {
+        itemsArr.push({...doc.data(), id: doc.id})
+      })
+      setItems(itemsArr)
+    })
+  }, [])
 
   // TODO: Delete items from database
 
