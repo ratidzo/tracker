@@ -46,7 +46,18 @@ export default function Home() {
       querySnapshot.forEach((doc) => {
         itemsArr.push({...doc.data(), id: doc.id})
       })
-      setItems(itemsArr)
+      setItems(itemsArr);
+
+      // Read total from itemsArr
+      const calculateTotal = () => {
+        const totalPrice = itemsArr.reduce(
+          (sum, item) => sum + parseFloat(item.price), 
+          0
+        );
+        setTotal(totalPrice);
+      };
+      calculateTotal();
+      return () => unsubscribe();
     })
   }, [])
 
